@@ -1,0 +1,112 @@
+[
+    {
+        "department": "Veterans Affairs",
+        "year": 1996,
+        "percent": 0.85
+    },
+    {
+        "department": "Veterans Affairs",
+        "year": 2013,
+        "percent": 0.95
+    },
+    {
+        "department": "Justice",
+        "year": 1996,
+        "percent": 0.86
+    },
+    {
+        "department": "Justice",
+        "year": 2013,
+        "percent": 0.83
+    },
+    {
+        "department": "HHS",
+        "year": 1996,
+        "percent": 0.56
+    },
+    {
+        "department": "HHS",
+        "year": 2013,
+        "percent": 0.48
+    },
+    {
+        "department": "Commerce",
+        "year": 1996,
+        "percent": 0.41
+    },
+    {
+        "department": "Commerce",
+        "year": 2013,
+        "percent": 0.13
+    },
+    {
+        "department": "Interior",
+        "year": 1996,
+        "percent": 0.30
+    },
+    {
+        "department": "Interior",
+        "year": 2013,
+        "percent": 0.20
+    },
+    {
+        "department": "Labor",
+        "year": 1996,
+        "percent": 0.21
+    },
+    {
+        "department": "Labor",
+        "year": 2013,
+        "percent": 0.19
+    },
+    {
+        "department": "Smithsonian",
+        "year": 1996,
+        "percent": 0.14
+    },
+    {
+        "department": "Smithsonian",
+        "year": 2013,
+        "percent": 0.17
+    },
+    {
+        "department": "HUD",
+        "year": 1996,
+        "percent": 0.17
+    },
+    {
+        "department": "HUD",
+        "year": 2013,
+        "percent": 0.04
+    },
+    {
+        "department": "Education",
+        "year": 1996,
+        "percent": 0.10
+    },
+    {
+        "department": "Education",
+        "year": 2013,
+        "percent": 0.05
+    },
+    {
+        "department": "EPA",
+        "year": 1996,
+        "percent": 0.04
+    },
+    {
+        "department": "EPA",
+        "year": 2013,
+        "percent": 0.07
+    },
+    {
+        "department": "NASA",
+        "year": 1996,
+        "percent": 0.06
+    },
+    {
+        "department": "NASA",
+        "year": 2013,
+        "percent": 0.03
+    }
+]

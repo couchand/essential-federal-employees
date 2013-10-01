@@ -59,6 +59,8 @@ d3.json('data.json', function(error, records) {
 
     x.domain( records.map( getDepartment ) );
 
+    var offset = x.rangeBand() / 4;
+
     var svg = d3.select('body').append('svg')
         .attr('width', width + 2*margin)
         .attr('height', height + 2*margin)
@@ -74,6 +76,14 @@ d3.json('data.json', function(error, records) {
         .attr('transform', 'translate(0,'+height+')')
         .call( xAxis );
 
+    svg.selectAll('.dot')
+        .data( records )
+        .enter().append('circle')
+        .attr('class', 'dot')
+        .attr('r', 3)
+        .attr('fill', function(d) { return color( d.year ); })
+        .attr('cx', function(d) { return x( d.department ) + (d.year == 2013 ? offset*3 : offset); })
+        .attr('cy', function(d) { return y( d.percent ); });
 });
 
 </script>

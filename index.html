@@ -81,6 +81,12 @@ d3.json('data.json', function(error, records) {
         .append('g')
         .attr('transform', 'translate('+margin+','+margin+')');
 
+    svg.append('text')
+        .style('font-size', '14px')
+        .attr('x', 5)
+        .attr('y', -20)
+        .text('Essential Federal Employees, 1996 vs 2013')
+
     svg.append('g')
         .attr('class', 'y axis')
         .call( yAxis );

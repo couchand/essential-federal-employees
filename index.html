@@ -56,6 +56,12 @@ var yAxis = d3.svg.axis()
     .outerTickSize(0)
     .innerTickSize(-width);
 
+var labelForce = d3.layout.force()
+    .linkDistance(1)
+    .charge(function(n) { return n.fixed ? 0 : -30; })
+    .gravity(0)
+    .size([1, height]);
+
 function getDepartment(d) { return d.department; }
 
 var byDepartment = d3.nest()
@@ -113,13 +119,47 @@ d3.json('data.json', function(error, records) {
         .attr('x2', function(d) { return xYear( d.values[1] ); })
         .attr('y2', function(d) { return yPercent( d.values[1] ); });
 
+    var nodes = [], links = [], labels = [];
+    var dotX = xYear( departments[0].values[1] ), labelX = dotX + 10;
+
+    departments.forEach(function(d) {
+        var dot = {
+            x: dotX,
+            y: yPercent( d.values[1] ),
+            fixed: true
+        };
+        var label = {
+            x: labelX,
+            y: dot.y,
+            department: d.key
+        };
+        nodes.push( dot );
+        nodes.push( label );
+        labels.push( label );
+        links.push({ source: dot, target: label });
+    });
+
+    labelForce
+        .nodes( nodes )
+        .links( links )
+        .on('tick', function() {
+            labels.forEach(function(l) { l.x = labelX; });
+        })
+        .start();
+
+    for ( var i = 0; i < 50; i++ ) {
+        labelForce.tick();
+    }
+
+    labelForce.stop();
+
     svg.selectAll('.label')
-        .data( departments )
+        .data( labels )
         .enter().append('text')
         .attr('class', 'label')
-        .attr('x', width * 0.67 + 35)
-        .attr('y', function(d) { return yPercent( d.values[1] ) + 4; })
-        .text(function(d) { return d.key; });
+        .attr('x', labelX)
+        .attr('y', function(d) { return d.y; })
+        .text(function(d) { return d.department; });
 
 });
 

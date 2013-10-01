@@ -13,9 +13,9 @@ body {
     shape-rendering: crispEdges;
 }
 
-.grid line {
+.tick line {
     fill: none;
-    stroke: #AAA;
+    stroke: #CCC;
     shape-rendering: crispEdges;
 }
 
@@ -43,12 +43,15 @@ var color = d3.scale.category10()
 var xAxis = d3.svg.axis()
     .scale(x)
     .orient('bottom')
+    .tickSize(0);
 
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient('left')
     .tickFormat( percentage )
-    .tickValues([0, 0.25, 0.5, 0.75, 1]);
+    .tickValues([0, 0.25, 0.5, 0.75, 1])
+    .outerTickSize(-0.1)
+    .innerTickSize(-width);
 
 function getDepartment(d) { return d.department; }
 

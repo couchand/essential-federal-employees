@@ -113,6 +113,14 @@ d3.json('data.json', function(error, records) {
         .attr('x2', function(d) { return xYear( d.values[1] ); })
         .attr('y2', function(d) { return yPercent( d.values[1] ); });
 
+    svg.selectAll('.label')
+        .data( departments )
+        .enter().append('text')
+        .attr('class', 'label')
+        .attr('x', width * 0.67 + 35)
+        .attr('y', function(d) { return yPercent( d.values[1] ) + 4; })
+        .text(function(d) { return d.key; });
+
 });
 
 </script>

@@ -28,6 +28,12 @@ body {
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
+var increasingDepartments = {
+    'Veterans Affairs': true,
+    'Smithsonian': true,
+    'EPA': true
+};
+
 var width = 280,
     height = 350,
     margin = 50;
@@ -41,8 +47,6 @@ var x = d3.scale.ordinal()
 var y = d3.scale.linear()
     .domain([0, 1])
     .range([height, 0]);
-
-var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -66,11 +70,9 @@ d3.json('data.json', function(error, records) {
     var departments = byDepartment.entries( records );
     var departmentList = departments.map(function(d) { return d.key; });
 
-    color.domain( departmentList );
-
     function xYear(d) { return x( d.year ); }
     function yPercent(d) { return y( d.percent ); }
-    function colorByDepartment(d) { return color( d.department ); }
+    function colorByTrend(d) { return d.department in increasingDepartments ? '#F22' : '#CCC'; }
 
     var svg = d3.select('body').append('svg')
         .attr('width', width + 2*margin)
@@ -98,7 +100,7 @@ d3.json('data.json', function(error, records) {
         .enter().append('circle')
         .attr('class', 'dot')
         .attr('r', 3)
-        .attr('fill', colorByDepartment)
+        .attr('fill', colorByTrend)
         .attr('cx', xYear)
         .attr('cy', yPercent);
 
@@ -107,14 +109,14 @@ d3.json('data.json', function(error, records) {
         .enter().append('line')
         .attr('class', 'line')
         .attr('fill', 'none')
-        .attr('stroke', function(d) { return colorByDepartment( d.values[0] ); })
+        .attr('stroke', function(d) { return colorByTrend( d.values[0] ); })
         .attr('x1', function(d) { return xYear( d.values[0] ); })
         .attr('y1', function(d) { return yPercent( d.values[0] ); })
         .attr('x2', function(d) { return xYear( d.values[1] ); })
         .attr('y2', function(d) { return yPercent( d.values[1] ); });
 
     svg.selectAll('.label')
-        .data( departments )
+        .data( departments.filter(function(d){ return !!(d.key in increasingDepartments); }) )
         .enter().append('text')
         .attr('class', 'label')
         .attr('x', width * 0.67 + 35)

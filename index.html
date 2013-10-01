@@ -77,8 +77,8 @@ d3.json('data.json', function(error, records) {
     function xYear(d) { return x( d.year ); }
     function yPercent(d) { return y( d.percent ); }
     function colorByTrend(d) {
-        return d.department in increasingDepartments ? '#F22' :
-            d.department in decreasingDepartments ? '#22F' :
+        return d.department in increasingDepartments ? '#C55' :
+            d.department in decreasingDepartments ? '#55C' :
             '#CCC';
     }
 

@@ -60,9 +60,10 @@ var byDepartment = d3.nest()
 d3.json('data.json', function(error, records) {
 
     var departments = byDepartment.entries( records );
+    var departmentList = departments.map(function(d) { return d.key; });
 
-    x.domain( records.map( getDepartment ) );
-    color.domain( records.map( getDepartment ) );
+    x.domain( departmentList );
+    color.domain( departmentList );
 
     var offset = x.rangeBand() / 4;
 

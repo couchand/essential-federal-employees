@@ -37,8 +37,7 @@ var y = d3.scale.linear()
     .domain([0, 1])
     .range([height, 0]);
 
-var color = d3.scale.category10()
-    .domain([1996, 2013]);
+var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -58,6 +57,7 @@ function getDepartment(d) { return d.department; }
 d3.json('data.json', function(error, records) {
 
     x.domain( records.map( getDepartment ) );
+    color.domain( records.map( getDepartment ) );
 
     var offset = x.rangeBand() / 4;
 
@@ -81,7 +81,7 @@ d3.json('data.json', function(error, records) {
         .enter().append('circle')
         .attr('class', 'dot')
         .attr('r', 3)
-        .attr('fill', function(d) { return color( d.year ); })
+        .attr('fill', function(d) { return color( d.department ); })
         .attr('cx', function(d) { return x( d.department ) + (d.year == 2013 ? offset*3 : offset); })
         .attr('cy', function(d) { return y( d.percent ); });
 });

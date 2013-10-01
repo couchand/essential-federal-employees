@@ -93,13 +93,6 @@ d3.json('data.json', function(error, records) {
         .attr('transform', 'translate(0,'+height+')')
         .call( xAxis );
 
-    d3.select('.x.axis')
-        .selectAll('text')
-        .attr("transform", function(d) {
-            var bb = this.getBBox();
-            return "translate(" + (bb.height * -2 - bb.width * 0.4 + 24) + "," + (bb.height + bb.width * 0.2) + ")rotate(-30)";
-        });
-
     svg.selectAll('.dot')
         .data( records )
         .enter().append('circle')

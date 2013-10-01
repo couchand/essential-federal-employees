@@ -13,6 +13,10 @@ body {
     shape-rendering: crispEdges;
 }
 
+.y.axis path {
+    stroke: none;
+}
+
 .tick line {
     fill: none;
     stroke: #CCC;
@@ -49,7 +53,7 @@ var yAxis = d3.svg.axis()
     .orient('left')
     .tickFormat( percentage )
     .tickValues([0, 0.25, 0.5, 0.75, 1])
-    .outerTickSize(-0.1)
+    .outerTickSize(0)
     .innerTickSize(-width);
 
 function getDepartment(d) { return d.department; }

@@ -103,15 +103,6 @@ d3.json('data.json', function(error, records) {
         .attr('transform', 'translate(0,'+height+')')
         .call( xAxis );
 
-    svg.selectAll('.dot')
-        .data( records )
-        .enter().append('circle')
-        .attr('class', 'dot')
-        .attr('r', 3)
-        .attr('fill', colorByTrend)
-        .attr('cx', xYear)
-        .attr('cy', yPercent);
-
     svg.selectAll('.line')
         .data( departments )
         .enter().append('line')

@@ -71,7 +71,12 @@ var byDepartment = d3.nest()
 
 d3.json('data.json', function(error, records) {
 
-    var departments = byDepartment.entries( records );
+    var departments = byDepartment.entries(
+        records.filter(function(d){ return !(d.department in increasingDepartments || d.department in decreasingDepartments); })
+    );
+    byDepartment.entries(
+        records.filter(function(d){ return d.department in increasingDepartments || d.department in decreasingDepartments; })
+    ).forEach(function(d){ departments.push(d); });
     var departmentList = departments.map(function(d) { return d.key; });
 
     function xYear(d) { return x( d.year ); }
